@@ -1,15 +1,15 @@
 /*
-* Ä£¿é»®·Ö£º
-* 1.µØÍ¼³õÊ¼»¯
-* 2.ÈÈ¼ü¿ØÖÆ
-* 3.ÍÆÏä×Ó¿ØÖÆ
-* 4.ÓÎÏ·½áÊø
+* æ¨¡å—åˆ’åˆ†ï¼š
+* 1.åœ°å›¾åˆå§‹åŒ–
+* 2.çƒ­é”®æ§åˆ¶
+* 3.æ¨ç®±å­æ§åˆ¶
+* 4.æ¸¸æˆç»“æŸ
 *
 */
 #include <stdlib.h>
 #include <stdio.h>
-#include <graphics.h>  // easyxÍ¼ĞÎ¿â
-#include <conio.h>     // ¿ØÖÆÌ¨ÊäÈëÊä³ö
+#include <graphics.h>  // easyxå›¾å½¢åº“
+#include <conio.h>     // æ§åˆ¶å°è¾“å…¥è¾“å‡º
 
 
 using namespace std;
@@ -20,12 +20,12 @@ using namespace std;
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 550
 
-#define RATIO 50  // µÀ¾ßÍ¼ĞÎ·ÅËõ±ÈÀı
+#define RATIO 50  // é“å…·å›¾å½¢æ”¾ç¼©æ¯”ä¾‹
 
 #define LINE 9
 #define COLUMN 12
 
-#define START_X 100  // ×¢ÒâeasexÍ¼ĞÎ¿âµÄxÖáÊÇºáÏòµÄ£¬yÖáÊÇ×İÏòµÄ
+#define START_X 100  // æ³¨æ„easexå›¾å½¢åº“çš„xè½´æ˜¯æ¨ªå‘çš„ï¼Œyè½´æ˜¯çºµå‘çš„
 #define START_Y 50
 
 #define KEY_UP    'w'
@@ -44,20 +44,20 @@ typedef struct _POS
 
 enum _PROPS
 {
-	WALL,    // Ç½
-	FLOOR,   // µØ°å
-	BOX_DES, // Ïä×ÓÄ¿µÄµÚ
-	MAN,     // Ğ¡ÈË
-	BOX,     // Ïä×Ó
+	WALL,    // å¢™
+	FLOOR,   // åœ°æ¿
+	BOX_DES, // ç®±å­ç›®çš„ç¬¬
+	MAN,     // å°äºº
+	BOX,     // ç®±å­
 	PROPS_NUM
 };
 
-IMAGE images[PROPS_NUM];  // µÀ¾ßÍ¼ĞÎÀà
-POS man;                  // ¼ÇÂ¼ÈËÎïËùÔÚÎ»ÖÃ
-bool reprint_box;         // ÈËÎï´ÓÄ¿µÄµØÀë¿ªÊ±ÒªÖØĞÂ»æÖÆÄ¿µÄµØ
-int des_count = 4;         // Ê£ÓàÄ¿µÄÊı
+IMAGE images[PROPS_NUM];  // é“å…·å›¾å½¢ç±»
+POS man;                  // è®°å½•äººç‰©æ‰€åœ¨ä½ç½®
+bool reprint_box;         // äººç‰©ä»ç›®çš„åœ°ç¦»å¼€æ—¶è¦é‡æ–°ç»˜åˆ¶ç›®çš„åœ°
+int des_count = 4;         // å‰©ä½™ç›®çš„æ•°
 
-// Ç½£º0£¬µØ°å£º1£¬Ïä×ÓÄ¿µÄµØ£º2£¬Ğ¡ÈË£º3£¬Ïä×Ó£º4£¬Ïä×ÓÃüÖĞÄ¿±ê£º5
+// å¢™ï¼š0ï¼Œåœ°æ¿ï¼š1ï¼Œç®±å­ç›®çš„åœ°ï¼š2ï¼Œå°äººï¼š3ï¼Œç®±å­ï¼š4ï¼Œç®±å­å‘½ä¸­ç›®æ ‡ï¼š5
 int map[LINE][COLUMN] =
 {
 	{0,0,0,0,0,0,0,0,0,0,0,0},
@@ -85,36 +85,36 @@ void changeMap(POS* pos, _PROPS prop)
 }
 
 
-// ÓÎÏ·¿ØÖÆÆ÷£º½ÓÊÜÊäÈë-ÅĞ¶Ï·½ÏòÊÇ·ñ¿ÉĞĞ-ĞŞ¸ÄµØÍ¼¶ÔÓ¦Î»ÖÃ¼ÇÂ¼
+// æ¸¸æˆæ§åˆ¶å™¨ï¼šæ¥å—è¾“å…¥-åˆ¤æ–­æ–¹å‘æ˜¯å¦å¯è¡Œ-ä¿®æ”¹åœ°å›¾å¯¹åº”ä½ç½®è®°å½•
 void gameControl(char direct)
 {
-	POS next_pos=man;
-	POS next_next_pos=man;
+	POS next_pos = man;
+	POS next_next_pos = man;
 
 	switch (direct)
 	{
 	case KEY_UP:
-		next_pos.y -=1;
-		next_next_pos.y -=2;
+		next_pos.y -= 1;
+		next_next_pos.y -= 2;
 		break;
 	case KEY_DOWN:
-		next_pos.y +=1;
-		next_next_pos.y +=2;
+		next_pos.y += 1;
+		next_next_pos.y += 2;
 		break;
 	case KEY_LEFT:
-		next_pos.x -=1;
-		next_next_pos.x -=2;
+		next_pos.x -= 1;
+		next_next_pos.x -= 2;
 		break;
 	case KEY_RIGHT:
-		next_pos.x +=1;
-		next_next_pos.x +=2;
+		next_pos.x += 1;
+		next_next_pos.x += 2;
 		break;
 	default:
 		return;
 	}
 
-	// Èç¹ûÈËµÄÇ°ÃæÊÇµØ°å
-	if (isValid(next_pos) && map[next_pos.y][next_pos.x]==FLOOR)
+	// å¦‚æœäººçš„å‰é¢æ˜¯åœ°æ¿
+	if (isValid(next_pos) && map[next_pos.y][next_pos.x] == FLOOR)
 	{
 		if (reprint_box)
 		{
@@ -129,7 +129,7 @@ void gameControl(char direct)
 		man = next_pos;
 	}
 
-	// Èç¹ûÈËµÄÇ°ÃæÊÇÄ¿µÄµØ
+	// å¦‚æœäººçš„å‰é¢æ˜¯ç›®çš„åœ°
 	if (isValid(next_pos) && map[next_pos.y][next_pos.x] == BOX_DES)
 	{
 		if (reprint_box)
@@ -146,7 +146,7 @@ void gameControl(char direct)
 		reprint_box = true;
 	}
 
-	// Èç¹ûÈËµÄÇ°ÃæÊÇÏä×Ó
+	// å¦‚æœäººçš„å‰é¢æ˜¯ç®±å­
 	if (isValid(next_pos) && map[next_pos.y][next_pos.x] == BOX)
 	{
 		if (map[next_next_pos.y][next_next_pos.x] == FLOOR)
@@ -181,8 +181,8 @@ void gameControl(char direct)
 			man = next_pos;
 		}
 	}
-	
-	// ÈËÇ°ÃæÊÇÇ½Ê±£¬º¯Êı½áÊø
+
+	// äººå‰é¢æ˜¯å¢™æ—¶ï¼Œå‡½æ•°ç»“æŸ
 
 }
 
@@ -191,24 +191,24 @@ int main(void)
 {
 	IMAGE bg_image;
 
-	initgraph(SCREEN_WIDTH, SCREEN_HEIGHT);  // ³õÊ¼»¯Í¼ĞÎ´°¿Ú
+	initgraph(SCREEN_WIDTH, SCREEN_HEIGHT);  // åˆå§‹åŒ–å›¾å½¢çª—å£
 
 	loadimage(&bg_image, _T("blackground.bmp"), SCREEN_WIDTH, SCREEN_HEIGHT, true);
-	putimage(0, 0, &bg_image);  // ¼ÓÔØ±³¾°
+	putimage(0, 0, &bg_image);  // åŠ è½½èƒŒæ™¯
 
-	// ¼ÓÔØĞ¡µÀ¾ßµÄÍ¼Ïñ
+	// åŠ è½½å°é“å…·çš„å›¾åƒ
 	loadimage(&images[WALL], _T("wall_right.bmp"), RATIO, RATIO, true);
 	loadimage(&images[FLOOR], _T("floor.bmp"), RATIO, RATIO, true);
 	loadimage(&images[BOX_DES], _T("des.bmp"), RATIO, RATIO, true);
 	loadimage(&images[MAN], _T("man.bmp"), RATIO, RATIO, true);
 	loadimage(&images[BOX], _T("box.bmp"), RATIO, RATIO, true);
 
-	// ÏÔÊ¾µØÍ¼ÓëµÀ¾ß
+	// æ˜¾ç¤ºåœ°å›¾ä¸é“å…·
 	for (int y = 0; y < LINE; y++)
 	{
 		for (int x = 0; x < COLUMN; x++)
 		{
-			if (map[y][x] == MAN)  // ¸üĞÂÈËµÄÎ»ÖÃ
+			if (map[y][x] == MAN)  // æ›´æ–°äººçš„ä½ç½®
 			{
 				man.x = x;
 				man.y = y;
@@ -217,7 +217,7 @@ int main(void)
 		}
 	}
 
-	// ÓÎÏ·Ñ­»·
+	// æ¸¸æˆå¾ªç¯
 	bool quit = false;
 	while (!quit)
 	{
@@ -226,22 +226,22 @@ int main(void)
 			printf("you win !");
 			break;
 		}
-		if (_kbhit()) // µ±°´¼ü°´ÏÂÊ±
+		if (_kbhit()) // å½“æŒ‰é”®æŒ‰ä¸‹æ—¶
 		{
 			char ch = _getch();
 			switch (ch)
 			{
 			case KEY_UP:
-				 gameControl(KEY_UP);
+				gameControl(KEY_UP);
 				break;
 			case KEY_DOWN:
-				 gameControl(KEY_DOWN);
+				gameControl(KEY_DOWN);
 				break;
 			case KEY_LEFT:
-				 gameControl(KEY_LEFT);
+				gameControl(KEY_LEFT);
 				break;
 			case KEY_RIGHT:
-				 gameControl(KEY_RIGHT);
+				gameControl(KEY_RIGHT);
 				break;
 			case KEY_QUIT:
 				quit = true;
@@ -252,7 +252,7 @@ int main(void)
 			}
 		}
 	}
-	
+
 
 	closegraph();
 
