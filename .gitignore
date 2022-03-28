@@ -33,6 +33,7 @@
 
 # other
 Debug/
+Release/
 x64/
 .vs/
 *.sln

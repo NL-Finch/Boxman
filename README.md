@@ -1,2 +1,7 @@
-# Mini-Program
-some program
+# BoxMan
+
+实现一个简单的推箱子游戏，用连接MySQL存储用户信息和地图信息。
+
+
+
+# 文件功能简介
