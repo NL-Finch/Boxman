@@ -6,11 +6,11 @@
 #include <string>
 
 #include "DataBase.h"
-#include "BoxMan.h"
+#include "Boxman.h"
 
 #define isValid(pos) pos.x >= 0 && pos.x < level.map_column && pos.y >= 0 && pos.y < level.map_row
 
-namespace BoxMan
+namespace Boxman
 {
 	using namespace std;
 
@@ -50,7 +50,7 @@ namespace BoxMan
 
 			if (fetch_user_info(user))
 			{
-				cout << "用户数据获取成功！" << endl;
+				cout << "户数据获取成功！" << endl;
 				printf("用户数据-> user_id: %d  level_id: %d\n", user.id, user.level_id);
 				::system("pause");
 				break;
@@ -73,13 +73,13 @@ namespace BoxMan
 	{
 		initgraph(SCREEN_WIDTH, SCREEN_HEIGHT, SHOWCONSOLE);
 		// 加载背景图片
-		loadimage(&bg_image, _T("blackground.bmp"), SCREEN_WIDTH, SCREEN_HEIGHT, true);
+		loadimage(&bg_image, _T("blackground.png"), SCREEN_WIDTH, SCREEN_HEIGHT, true);
 		// 加载网格图片
-		loadimage(&images[WALL], _T("wall_right.bmp"), RATIO, RATIO, true);
-		loadimage(&images[FLOOR], _T("floor.bmp"), RATIO, RATIO, true);
-		loadimage(&images[BOX_DES], _T("des.bmp"), RATIO, RATIO, true);
-		loadimage(&images[MAN], _T("man.bmp"), RATIO, RATIO, true);
-		loadimage(&images[BOX], _T("box.bmp"), RATIO, RATIO, true);
+		loadimage(&images[WALL], _T("wall_right.png"), RATIO, RATIO, true);
+		loadimage(&images[FLOOR], _T("floor.png"), RATIO, RATIO, true);
+		loadimage(&images[BOX_DES], _T("des.png"), RATIO, RATIO, true);
+		loadimage(&images[MAN], _T("man.png"), RATIO, RATIO, true);
+		loadimage(&images[BOX], _T("box.png"), RATIO, RATIO, true);
 	}
 
 	void load_level()
@@ -242,8 +242,6 @@ namespace BoxMan
 			steps++;
 		}
 
-
-
 	}
 
 	bool gameNextScene()
@@ -394,7 +392,7 @@ namespace BoxMan
 int main(void)
 {
 	::system("chcp 65001");
-	BoxMan::run_game();
+	Boxman::run_game();
 	return 0;
 }
 

@@ -5,7 +5,7 @@
 #define DB_HOST "127.0.0.1"
 #define DB_USER "root"
 #define DB_USER_PASSWD "123456"
-#define DB_NAME "box_man"
+#define DB_NAME "boxman"
 #define DB_PORT 3306
 #define DB_UNIX_SOCKET NULL 
 #define DB_CLIENT_FLAG 0
@@ -15,7 +15,7 @@
 #define LINE 45
 #define COLUMN 45
 
-namespace BoxMan
+namespace Boxman
 {
 	using namespace std;
 

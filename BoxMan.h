@@ -14,7 +14,7 @@
 #define KEY_DOWN  's'
 #define KEY_QUIT  'q'
 
-namespace BoxMan
+namespace Boxman
 {
 	typedef struct _POS	// 平面位置
 	{

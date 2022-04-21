@@ -2,7 +2,7 @@
 #include <iostream>
 #include "DataBase.h"
 
-namespace BoxMan
+namespace Boxman
 {
 	using namespace std;
 
@@ -48,7 +48,7 @@ namespace BoxMan
 		}
 
 		// 2.根据用户名和密码获取用户信息（id，level_id）
-		snprintf(sql, 256, "select id,level_id from users where user_name='%s' and password=md5('%s');",
+		snprintf(sql, 256, "select id,level_id from users where user_name='%s' and password=md5(md5('%s'));",
 			user.username.c_str(), user.password.c_str());  // 将查询语句加载到sql缓冲区中
 		ret = mysql_query(&mysql, sql);  // 执行查询语句，成功返回0
 
